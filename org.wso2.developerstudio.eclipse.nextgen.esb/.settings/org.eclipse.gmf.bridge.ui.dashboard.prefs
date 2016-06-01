@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.wso2.developerstudio.eclipse.nextgen.esb/model/nextGenESB.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.wso2.developerstudio.eclipse.nextgen.esb/model/nextGenESB.ecore
+gmf_dashboard/generationModel=platform\:/resource/org.wso2.developerstudio.eclipse.nextgen.esb/model/nextGenESB.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.wso2.developerstudio.eclipse.nextgen.esb/model/nextGenESB.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.wso2.developerstudio.eclipse.nextgen.esb/model/nextGenESB.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.wso2.developerstudio.eclipse.nextgen.esb/model/nextGenESB.gmftool

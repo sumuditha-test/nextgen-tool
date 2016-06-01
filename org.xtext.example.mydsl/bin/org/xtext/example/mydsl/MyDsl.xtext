@@ -1,0 +1,85 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	(participants+=ParticipantStatement*) & (statements+=Statement*)
+;
+
+Statement : 
+	MediatorStatement
+	| RoutingStatement
+	| ParallelStatement
+	| IfStatement
+	| LoopStatement
+	| GroupStatement
+	| RefStatement
+;
+
+MediatorStatement : 
+	(mediatorStatement=MediatorType '(' config=STRING ')')
+;
+
+ProcessingStatement :
+	('message_processor' '(' name=ID (')'|(',' configs=STRING ')')))
+;
+
+RoutingStatement :
+	source=ID '->' target=ID ':' action=STRING
+;
+
+ParallelStatement : 
+	'par'
+    (parstatements+=Statement*)
+    ('else' (elsestatements+=Statement*))*
+    'end'
+;
+
+IfStatement : 
+	'alt' 'condition' '(' 'source' '('(routeId=STRING)','(transport=STRING) ')' ',' 'pattern' '('pattern=STRING ')'')'
+    (altstatements+=Statement*)
+    ('else' (elsestatements+=Statement*))*
+    'end'
+;
+
+LoopStatement : //TODO : not implemented
+	'loop' name=ID
+;
+
+GroupStatement : //TODO : not implemented
+	'group' name=ID
+;
+
+RefStatement : //TODO : not implemented
+	'ref' name=ID
+;
+
+ParticipantStatement:
+	'participant' name=ID ':' participantType=ParticipantType '(' description=STRING ')'
+	| 'participant' name=ID ':' outbounds=OutboundEndpointDef
+	| 'participant' name=ID ':' inbounds=InboundEndpointDef
+;
+
+OutboundEndpointDef : 
+	'OutboundEndpoint' '(' + 'protocol''('(protocol=STRING)')' ',' 'host' '('(host=STRING) ')'')'
+;
+
+InboundEndpointDef : 
+	'InboundEndpoint' '(' + 'protocol''('(protocol=STRING)')' ',' 'port' '('(port=INT) ')'',''context''('(context=STRING)')'')'
+;
+
+enum ParticipantType:
+    INTEGRATIONFLOW='IntegrationFlow' 
+    | INBOUNDENDPOINT='InboundEndpoint'
+    | OUTBOUNDENDPOINT = 'OutboundEndpoint'
+    | PIPELINE='Pipeline';
+ 
+enum MediatorType:
+	LOG='log'
+	| CALL = 'call'
+	| RESPOND = 'respond'
+	| FILTER = 'filter'
+	| TRANSFORM = 'transform'
+	| ENRICH = 'enrich'
+	| EXTERNAL = 'external'
+;

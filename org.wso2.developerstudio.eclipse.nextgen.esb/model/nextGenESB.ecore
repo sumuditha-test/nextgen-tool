@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="esb" nsURI="http://www.wso2.com/nextgen/esb" nsPrefix="esb">
+  <eClassifiers xsi:type="ecore:EClass" name="Lifeline" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inMessage" upperBound="-1"
+        eType="#//message" eOpposite="#//message/inLifeLine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outMessage" upperBound="-1"
+        eType="#//message" containment="true" eOpposite="#//message/outLifeLine"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="message" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inLifeLine" eType="#//Lifeline"
+        eOpposite="#//Lifeline/inMessage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outLifeLine" eType="#//Lifeline"
+        eOpposite="#//Lifeline/outMessage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ESBRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lifeLine" upperBound="-1"
+        eType="#//Lifeline" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
